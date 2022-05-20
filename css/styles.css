@@ -11,6 +11,7 @@
     --gradient-color: rgba(47, 48, 58, 0.4);
     /*secondary font -- font-family: 'Raleway',    sans-serif; */
     /* main font  -- font-family: 'Roboto',    sans-serif; */
+    --animation-type: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -215,7 +216,7 @@ img {
 
     background-color: rgba(0, 0, 0, 0.2);
     
-    
+    transition: opacity var(--animation-type), visibility var(--animation-type);
 }
 
 .modal-window {    
@@ -228,20 +229,8 @@ img {
     height: 581px;
 
     background-color: var(--fifth-color-text);
-    border-radius: 4px;
-    opacity: 1;
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-     opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.modal-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-
-    border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+    border-radius: 4px;   
+    transition: opacity var(--animation-type), transform var(--animation-type);
 }
 
 .backdrop.is-hidden {
@@ -249,9 +238,34 @@ img {
     pointer-events: none;
     visibility: hidden;
 }
-.backdrop.is-hidden .modal-window {
-    transform: translate(0,0); 
+/* начальное состояние окна анимации */
+.backdrop.is-hidden .modal-window {    
+    transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
+}
+/* конечное состояние окна анимации */
+.backdrop .modal-window {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.modal-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    padding: 4px;
+
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+
+.close-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* sections -------------------------------------------------- */
@@ -314,6 +328,7 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;    
+
     height: 120px;
     margin-bottom: 30px;
 
@@ -424,9 +439,9 @@ img {
 
     border-radius: 50%;
     color: #AFB1B8;
+    background-color: var(--fifth-color-text);
 
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), 
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--animation-type), background-color var(--animation-type);
 }
 
 .socials-item {
@@ -465,8 +480,7 @@ img {
     border-radius: 4px;
     color: rgba(175, 177, 184, 1);
 
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--animation-type), border var(--animation-type);
 }
 
 .clients-link:hover,
@@ -518,7 +532,7 @@ img {
     color: var(--fifth-color-text);
     background-color: rgba(255, 255, 255, 0.1);
 
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 2var(--animation-type);
 }
 
 .adress-item:not(:last-child) {
@@ -542,7 +556,7 @@ img {
     color: var(--forth-color-text);  
     text-decoration: none;
 
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--animation-type);
 }
 
 /* portfolio*/
@@ -579,9 +593,9 @@ img {
     border-radius: 4px;
     border: 0;    
 
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--animation-type),
+     background-color var(--animation-type),
+     box-shadow var(--animation-type);
 }
 
 .active-btn {
@@ -638,15 +652,14 @@ img {
     background-color: rgba(33, 150, 243, 0.9);
     
     transform: translateY(100%);
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);    
+    transition: transform var(--animation-type);    
 }
 
 .portfolio-link {
     display: block;
     text-decoration: none;    
-    border: 1px solid #EEEEEE;
-
-    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);    
+    
+    transition: box-shadow var(--animation-type);    
 }
 
 .portfolio-link:hover .slider-text, 
